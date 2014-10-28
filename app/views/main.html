@@ -2,7 +2,13 @@
 	<h2>Perfect Durfee Swipe</h2>
 	<p>Top off your lunch swipe every time.</p>
 
-	<form id="lookupForm" ng-submit="lookupItem(searchItem)" novalidate>
+	<div id="shopping-bag-list">
+		<ul ng-show="shoppingBag.length" ng-repeat="item in shoppingBag">
+			<li>{{item}}</li>
+		</ul>
+	</div>
+
+	<form id="lookup-form" ng-submit="lookUpItem(searchItem)" novalidate>
 		<input ng-model="searchItem" type="text">
 		<input type="submit" value="Submit">
 	</form>

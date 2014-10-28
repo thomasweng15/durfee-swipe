@@ -15,9 +15,10 @@ angular.module('durfeeswipeApp')
       'Karma'
     ];
 
+    $scope.shoppingBag = [];
     $scope.searchItem = "";
 
-    $scope.lookupItem = function (searchItem) {
+    $scope.lookUpItem = function (searchItem) {
     	// TODO Find matches for item
     	$scope.searchItem = "";
     };
