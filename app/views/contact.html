@@ -1,1 +1,10 @@
-<p>this is the contact view!</p>
+<div ng-controller="ContactCtrl">
+	<h2>Perfect Durfee Swipe</h2>
+	<p>Top off your lunch swipe every time.</p>
+
+	<form id="lookupForm" ng-submit="lookupItem(searchItem)" novalidate>
+		<input ng-model="searchItem" type="text">
+		<input type="submit" value="Submit">
+	</form>
+	<p>{{searchItem}}</p>
+</div>

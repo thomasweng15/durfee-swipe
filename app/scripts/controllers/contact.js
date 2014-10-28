@@ -14,4 +14,11 @@ angular.module('durfeeswipeApp')
       'AngularJS',
       'Karma'
     ];
+
+    $scope.searchItem = "";
+
+    $scope.lookupItem = function (searchItem) {
+    	// TODO Find matches for item
+    	$scope.searchItem = "";
+    };
   });
