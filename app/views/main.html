@@ -5,7 +5,7 @@
 	<div id="shopping-bag-list" ng-show="shoppingBag.items.length">
 		<p>Your Bag:</p>
 		<ul ng-repeat="item in shoppingBag.items">
-			<li>{{item.name}}: {{item.price | currency}}</li>
+			<li>{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}}</li>
 		</ul>
 		<p>Total price: {{shoppingBag.totalPrice | currency}}</p>
 	</div>

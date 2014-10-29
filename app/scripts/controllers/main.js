@@ -31,19 +31,32 @@ angular.module('durfeeswipeApp')
       }
     ];
 
-    $scope.lookUpItem = function (searchItem) {
-      // TODO validation
-      for (var p in $scope.products) {
-        if ($scope.searchItem === $scope.products[p].name) {
-          $scope.addItemToBag($scope.products[p]);
+    $scope.findItem = function (itemName, list) {
+      for (var x in list) {
+        if (itemName === list[x].name) {
+          return x;
         }
       }
-    	$scope.searchItem = "";
+      return -1;
+    };
+
+    $scope.lookUpItem = function (searchTerm) {
+      // TODO validation
+      var i = $scope.findItem(searchTerm, $scope.products);
+      if (i !== -1) {
+        $scope.addItemToBag($scope.products[i]);
+      }
+      $scope.searchItem = "";
     };
 
     $scope.addItemToBag = function (item) {
-      // TODO search through bag and +1 to item if it exists.
-      $scope.shoppingBag.items.push(item);
+      var i = $scope.findItem(item.name, $scope.shoppingBag.items);
+      if (i !== -1) {
+        $scope.shoppingBag.items[i].count += 1;
+      } else {
+        item.count = 1;
+        $scope.shoppingBag.items.push(item);
+      }
       $scope.shoppingBag.totalPrice += item.price;
     };
   });
