@@ -8,11 +8,11 @@
 			<li>{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}}</li>
 		</ul>
 		<p>Total price: {{shoppingBag.totalPrice | currency}}</p>
+		<p>Remaining credit: {{shoppingBag.remainingCredit | currency}}</p>
 	</div>
 
 	<form id="lookup-form" ng-submit="lookUpItem(searchInput)" novalidate>
 		<input ng-model="searchInput" type="text">
 		<input type="submit" value="Submit">
 	</form>
-	<p>{{searchInput}}</p>
 </div>

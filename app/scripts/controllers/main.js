@@ -15,9 +15,11 @@ angular.module('durfeeswipeApp')
       'Karma'
     ];
 
+    $scope.creditLimit = 8.00;
     $scope.searchInput = "";
     $scope.shoppingBag = {
         totalPrice: 0.00,
+        remainingCredit: $scope.creditLimit,
         items: []
     };
 
@@ -50,6 +52,7 @@ angular.module('durfeeswipeApp')
         $scope.shoppingBag.items.push(item);
       }
       $scope.shoppingBag.totalPrice += item.price;
+      $scope.shoppingBag.remainingCredit -= item.price;
     };
 
     $scope.lookUpItem = function (searchInput) {
