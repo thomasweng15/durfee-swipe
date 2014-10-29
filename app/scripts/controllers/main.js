@@ -16,7 +16,7 @@ angular.module('durfeeswipeApp')
     ];
 
     $scope.creditLimit = 8.00;
-    $scope.searchInput = "";
+    $scope.searchInput = '';
     $scope.shoppingBag = {
         totalPrice: 0.00,
         remainingCredit: $scope.creditLimit,
@@ -25,11 +25,11 @@ angular.module('durfeeswipeApp')
 
     $scope.products = [
       {
-        name: "chips",
+        name: 'chips',
         price: 3.00
       },
       {
-        name: "soda",
+        name: 'soda',
         price: 2.00
       }
     ];
@@ -61,6 +61,6 @@ angular.module('durfeeswipeApp')
       if (i !== -1) {
         addItemToBag($scope.products[i]);
       }
-      $scope.searchInput = "";
+      $scope.searchInput = '';
     };
   });
