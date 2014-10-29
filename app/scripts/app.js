@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('durfeeswipeApp', [
+var app = angular.module('durfeeswipeApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -34,4 +33,18 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  });
+
+app.factory('productsFactory', function(){
+    var products = [
+      {
+        name: 'chips',
+        price: 3.00
+      },
+      {
+        name: 'soda',
+        price: 2.00
+      }
+    ];
+    return products;
   });

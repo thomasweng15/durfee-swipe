@@ -1,1 +1,6 @@
-<p>This is the inventory view</p>
+<div ng-controller='InventoryCtrl'>
+	<h2>Inventory</h2>
+	<ul ng-repeat='product in products'>
+		<li>{{product.name}}: {{product.price | currency}}</li>
+	</ul>
+</div>

@@ -8,7 +8,7 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, productsFactory) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -22,17 +22,7 @@ angular.module('durfeeswipeApp')
         remainingCredit: $scope.creditLimit,
         items: []
     };
-
-    $scope.products = [
-      {
-        name: 'chips',
-        price: 3.00
-      },
-      {
-        name: 'soda',
-        price: 2.00
-      }
-    ];
+    $scope.products = productsFactory;
 
     $scope.findItem = function (itemName, list) {
       for (var x = 0; x < list.length; x++) {
