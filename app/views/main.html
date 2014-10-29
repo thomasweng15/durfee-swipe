@@ -10,9 +10,9 @@
 		<p>Total price: {{shoppingBag.totalPrice | currency}}</p>
 	</div>
 
-	<form id="lookup-form" ng-submit="lookUpItem(searchItem)" novalidate>
-		<input ng-model="searchItem" type="text">
+	<form id="lookup-form" ng-submit="lookUpItem(searchInput)" novalidate>
+		<input ng-model="searchInput" type="text">
 		<input type="submit" value="Submit">
 	</form>
-	<p>{{searchItem}}</p>
+	<p>{{searchInput}}</p>
 </div>

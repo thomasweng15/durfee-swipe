@@ -15,11 +15,12 @@ angular.module('durfeeswipeApp')
       'Karma'
     ];
 
+    $scope.searchInput = "";
     $scope.shoppingBag = {
         totalPrice: 0.00,
         items: []
     };
-    $scope.searchItem = "";
+
     $scope.products = [
       {
         name: "chips",
@@ -31,7 +32,7 @@ angular.module('durfeeswipeApp')
       }
     ];
 
-    $scope.findItem = function (itemName, list) {
+    var findItem = function (itemName, list) {
       for (var x in list) {
         if (itemName === list[x].name) {
           return x;
@@ -40,17 +41,8 @@ angular.module('durfeeswipeApp')
       return -1;
     };
 
-    $scope.lookUpItem = function (searchTerm) {
-      // TODO validation
-      var i = $scope.findItem(searchTerm, $scope.products);
-      if (i !== -1) {
-        $scope.addItemToBag($scope.products[i]);
-      }
-      $scope.searchItem = "";
-    };
-
-    $scope.addItemToBag = function (item) {
-      var i = $scope.findItem(item.name, $scope.shoppingBag.items);
+    var addItemToBag = function (item) {
+      var i = findItem(item.name, $scope.shoppingBag.items);
       if (i !== -1) {
         $scope.shoppingBag.items[i].count += 1;
       } else {
@@ -58,5 +50,14 @@ angular.module('durfeeswipeApp')
         $scope.shoppingBag.items.push(item);
       }
       $scope.shoppingBag.totalPrice += item.price;
+    };
+
+    $scope.lookUpItem = function (searchInput) {
+      // TODO validation
+      var i = findItem(searchInput, $scope.products);
+      if (i !== -1) {
+        addItemToBag($scope.products[i]);
+      }
+      $scope.searchInput = "";
     };
   });
