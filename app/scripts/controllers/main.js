@@ -34,8 +34,8 @@ angular.module('durfeeswipeApp')
       }
     ];
 
-    var findItem = function (itemName, list) {
-      for (var x in list) {
+    $scope.findItem = function (itemName, list) {
+      for (var x = 0; x < list.length; x++) {
         if (itemName === list[x].name) {
           return x;
         }
@@ -43,8 +43,8 @@ angular.module('durfeeswipeApp')
       return -1;
     };
 
-    var addItemToBag = function (item) {
-      var i = findItem(item.name, $scope.shoppingBag.items);
+    $scope.addItemToBag = function (item) {
+      var i = $scope.findItem(item.name, $scope.shoppingBag.items);
       if (i !== -1) {
         $scope.shoppingBag.items[i].count += 1;
       } else {
@@ -57,9 +57,9 @@ angular.module('durfeeswipeApp')
 
     $scope.lookUpItem = function (searchInput) {
       // TODO validation
-      var i = findItem(searchInput, $scope.products);
+      var i = $scope.findItem(searchInput, $scope.products);
       if (i !== -1) {
-        addItemToBag($scope.products[i]);
+        $scope.addItemToBag($scope.products[i]);
       }
       $scope.searchInput = '';
     };
