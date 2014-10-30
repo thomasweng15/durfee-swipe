@@ -33,6 +33,16 @@ angular.module('durfeeswipeApp')
       }
     };
 
+    $scope.productsUnderLimit = function () {
+      var products = [];
+      for (var i = 0; i < $scope.products.length; i++) {
+        if ($scope.products[i].price <= $scope.shoppingBag.remainingCredit) {
+          products.push($scope.products[i]);
+        }
+      }
+      return products;
+    };
+
     $scope.findItem = function (itemName, list) {
       for (var x = 0; x < list.length; x++) {
         if (itemName === list[x].name) {

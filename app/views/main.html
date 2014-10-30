@@ -19,7 +19,7 @@
 	<div id='suggestions'>
 		<br>
 		<button ng-click="toggleSuggestions()" type="button">{{suggestionsLabel}}</button>
-		<ul ng-show="suggestionsLabel === 'Hide Suggestions'" ng-repeat="item in products">
+		<ul ng-show="suggestionsLabel === 'Hide Suggestions'" ng-repeat="item in productsUnderLimit()">
 			<li>{{item.name}}: {{item.price | currency}}</li>
 		</ul>
 	</div>
