@@ -375,6 +375,10 @@ module.exports = function (grunt) {
         'compass:dist',
         'imagemin',
         'svgmin'
+      ],
+      protractor_test: [
+        'protractor-chrome',
+        'protractor-firefox'
       ]
     },
 
@@ -384,9 +388,35 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    protractor: {
+      options: {
+        configFile: 'protractor.conf.js',
+        keepAlive: false,
+        noColor: false
+      },
+      chrome: {
+        options: {
+          args: {
+            browser: 'chrome'
+          }
+        }
+      },
+      firefox: {
+        options: {
+          args: {
+            browser: 'firefox'
+          }
+        }
+      }
+    },
   });
 
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.registerTask('protractor-chrome', ['protractor:chrome']);
+  grunt.registerTask('protractor-firefox', ['protractor:firefox']);
+  grunt.registerTask('protractor-e2e', ['concurrent:protractor_test']);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
