@@ -35,7 +35,7 @@ var app = angular.module('durfeeswipeApp', [
       });
   });
 
-app.factory('productsFactory', function(){
+app.factory('productsFactory', function () {
     var products = [
       {
         name: 'chips',

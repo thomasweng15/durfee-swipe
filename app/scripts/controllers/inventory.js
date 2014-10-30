@@ -8,7 +8,7 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('InventoryCtrl', function ($scope, productsFactory) {
+  .controller('InventoryCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,4 +16,4 @@ angular.module('durfeeswipeApp')
     ];
 
     $scope.products = productsFactory;
-  });
+  }]);

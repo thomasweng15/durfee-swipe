@@ -8,7 +8,7 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', function ($scope, productsFactory) {
+  .controller('MainCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -62,4 +62,4 @@ angular.module('durfeeswipeApp')
       }
       $scope.searchInput = '';
     };
-  });
+  }]);

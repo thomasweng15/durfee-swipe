@@ -2,7 +2,7 @@
   "private": true,
   "name": "durfeeswipe",
   "repository": "https://github.com/thomasweng15/durfee-swipe.git",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "express": "^4.10.0",
     "gzippo": "^0.2.0"
