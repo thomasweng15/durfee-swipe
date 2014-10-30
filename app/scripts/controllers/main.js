@@ -23,6 +23,15 @@ angular.module('durfeeswipeApp')
         items: []
     };
     $scope.products = productsFactory;
+    $scope.suggestionsLabel = 'Show Suggestions';
+
+    $scope.toggleSuggestions = function () {
+      if ($scope.suggestionsLabel === 'Show Suggestions') {
+        $scope.suggestionsLabel = 'Hide Suggestions';
+      } else {
+        $scope.suggestionsLabel = 'Show Suggestions';
+      }
+    };
 
     $scope.findItem = function (itemName, list) {
       for (var x = 0; x < list.length; x++) {
