@@ -15,10 +15,9 @@ angular.module('durfeeswipeApp')
       'Karma'
     ];
 
+    $scope.products = productsFactory;
     $scope.srvc = mainService;
     var model = $scope.srvc.model;
-
-    $scope.products = productsFactory;
 
     $scope.toggleSuggestions = function () {
       if (model.suggestionsLabel === 'Show Suggestions') {
@@ -67,7 +66,7 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.lookUpItem = function () {
-      // TODO validation
+      // TODO validation / autocomplete
       var i = $scope.findItem(model.searchInput, $scope.products);
       if (i !== -1) {
         if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {

@@ -21,23 +21,24 @@ describe('Controller: MainCtrl', function () {
       expect(scope.awesomeThings.length).toBe(3);
     });
 
-    it('should attach user search input to the scope', function () {
-      expect(scope.searchInput).not.toEqual(null);
+    it('should attach a service to the scope', function () {
+      expect(scope.srvc).not.toEqual(null);
+      expect(scope.srvc.model).not.toEqual(null);
     });
 
-    it('should attach credit limit to the scope', function () {
-      expect(scope.creditLimit).not.toEqual(null);
+    it('should attach user search input to the scope', function () {
+      expect(scope.srvc.model.searchInput).not.toEqual(null);
     });
 
     it('should attach a shopping bag to the scope', function () {
-      expect(scope.shoppingBag).not.toEqual(null);
-      expect(scope.shoppingBag.totalPrice).toEqual(0);
-      expect(scope.shoppingBag.remainingCredit).toEqual(scope.creditLimit);
-      expect(scope.shoppingBag.items).toEqual([]);
+      expect(scope.srvc.model.shoppingBag).not.toEqual(null);
+      expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(0);
+      expect(scope.srvc.model.shoppingBag.remainingCredit).toEqual(8.00);
+      expect(scope.srvc.model.shoppingBag.items).toEqual([]);
     });
   });
 
-  describe('Shopping bag functions', function () {
+  describe('Shopping Bag functions', function () {
     var bag = [
       {
         name: 'a',
@@ -63,15 +64,29 @@ describe('Controller: MainCtrl', function () {
       };
       
       scope.addItemToBag(newItem);
-      var newItemIndex = scope.findItem(newItem.name, scope.shoppingBag.items);
+      var newItemIndex = scope.findItem(newItem.name, scope.srvc.model.shoppingBag.items);
       expect(newItemIndex).not.toEqual(-1);
-      expect(scope.shoppingBag.items[newItemIndex].count).toEqual(1);
+      expect(scope.srvc.model.shoppingBag.items[newItemIndex].count).toEqual(1);
 
       scope.addItemToBag(newItem);
-      expect(scope.shoppingBag.items[newItemIndex].count).toEqual(2);
+      expect(scope.srvc.model.shoppingBag.items[newItemIndex].count).toEqual(2);
     });
 
-    xit('should look up products by search input', function() {
+    xit('should look up products by search input', function () {
+
+    });
+  });
+
+  xdescribe('Suggestions', function () {
+    xit('should have a show/hide Suggestions button', function () {
+
+    });
+
+    xit('should display items with prices below remaining credit', function () {
+
+    });
+
+    xit('should toggle upon first search input submit', function () {
 
     });
   });
