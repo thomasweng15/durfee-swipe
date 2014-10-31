@@ -35,6 +35,10 @@ var app = angular.module('durfeeswipeApp', [
       });
   });
 
+window.onbeforeunload = function (event) {
+    $rootScope.$broadcast('savestate');
+};
+
 app.factory('productsFactory', function () {
     var products = [
       {

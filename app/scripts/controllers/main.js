@@ -8,43 +8,37 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
+  .controller('MainCtrl', ['$scope', 'productsFactory', 'mainService', function ($scope, productsFactory, mainService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.creditLimit = 8.00;
-    $scope.searchInput = '';
-    $scope.shoppingBag = {
-        totalPrice: 0.00,
-        remainingCredit: $scope.creditLimit,
-        items: []
-    };
+    $scope.srvc = mainService;
+    var model = $scope.srvc.model;
+
     $scope.products = productsFactory;
-    $scope.suggestionsLabel = 'Show Suggestions';
-    var suggestionToggled = false;
 
     $scope.toggleSuggestions = function () {
-      if ($scope.suggestionsLabel === 'Show Suggestions') {
-        if (suggestionToggled === false) {
-          suggestionToggled = true;
+      if (model.suggestionsLabel === 'Show Suggestions') {
+        if (model.suggestionToggled === false) {
+          model.suggestionToggled = true;
         }
-        $scope.suggestionsLabel = 'Hide Suggestions';
+        model.suggestionsLabel = 'Hide Suggestions';
       } else {
-        $scope.suggestionsLabel = 'Show Suggestions';
+        model.suggestionsLabel = 'Show Suggestions';
       }
     };
 
     $scope.displaySuggestions = function () {
-      return $scope.suggestionsLabel === 'Hide Suggestions';
+      return model.suggestionsLabel === 'Hide Suggestions';
     };
 
     $scope.productsUnderLimit = function () {
       var products = [];
       for (var i = 0; i < $scope.products.length; i++) {
-        if ($scope.products[i].price <= $scope.shoppingBag.remainingCredit) {
+        if ($scope.products[i].price <= model.shoppingBag.remainingCredit) {
           products.push($scope.products[i]);
         }
       }
@@ -61,27 +55,27 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.addItemToBag = function (item) {
-      var i = $scope.findItem(item.name, $scope.shoppingBag.items);
+      var i = $scope.findItem(item.name, model.shoppingBag.items);
       if (i !== -1) {
-        $scope.shoppingBag.items[i].count += 1;
+        model.shoppingBag.items[i].count += 1;
       } else {
         item.count = 1;
-        $scope.shoppingBag.items.push(item);
+        model.shoppingBag.items.push(item);
       }
-      $scope.shoppingBag.totalPrice += item.price;
-      $scope.shoppingBag.remainingCredit -= item.price;
+      model.shoppingBag.totalPrice += item.price;
+      model.shoppingBag.remainingCredit -= item.price;
     };
 
-    $scope.lookUpItem = function (searchInput) {
+    $scope.lookUpItem = function () {
       // TODO validation
-      var i = $scope.findItem(searchInput, $scope.products);
+      var i = $scope.findItem(model.searchInput, $scope.products);
       if (i !== -1) {
-        if ($scope.shoppingBag.items.length === 0 && suggestionToggled === false) {
+        if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {
           $scope.toggleSuggestions();
-          suggestionToggled = true;
+          model.suggestionToggled = true;
         }
         $scope.addItemToBag($scope.products[i]);
       }
-      $scope.searchInput = '';
+      model.searchInput = '';
     };
   }]);
