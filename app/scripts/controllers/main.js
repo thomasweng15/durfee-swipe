@@ -24,13 +24,21 @@ angular.module('durfeeswipeApp')
     };
     $scope.products = productsFactory;
     $scope.suggestionsLabel = 'Show Suggestions';
+    var suggestionToggled = false;
 
     $scope.toggleSuggestions = function () {
       if ($scope.suggestionsLabel === 'Show Suggestions') {
+        if (suggestionToggled === false) {
+          suggestionToggled = true;
+        }
         $scope.suggestionsLabel = 'Hide Suggestions';
       } else {
         $scope.suggestionsLabel = 'Show Suggestions';
       }
+    };
+
+    $scope.displaySuggestions = function () {
+      return $scope.suggestionsLabel === 'Hide Suggestions';
     };
 
     $scope.productsUnderLimit = function () {
@@ -68,6 +76,10 @@ angular.module('durfeeswipeApp')
       // TODO validation
       var i = $scope.findItem(searchInput, $scope.products);
       if (i !== -1) {
+        if ($scope.shoppingBag.items.length === 0 && suggestionToggled === false) {
+          $scope.toggleSuggestions();
+          suggestionToggled = true;
+        }
         $scope.addItemToBag($scope.products[i]);
       }
       $scope.searchInput = '';
