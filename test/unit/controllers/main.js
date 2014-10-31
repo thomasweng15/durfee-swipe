@@ -57,7 +57,7 @@ describe('Controller: MainCtrl', function () {
       expect(scope.findItem(invalidItemName, bag)).toEqual(-1);
     });
 
-    it('should add item(s) to the bag', function () {
+    it('should add items to the bag', function () {
       var newItem = {
         name: 'd',
         price: 4.00
@@ -70,6 +70,10 @@ describe('Controller: MainCtrl', function () {
 
       scope.addItemToBag(newItem);
       expect(scope.srvc.model.shoppingBag.items[newItemIndex].count).toEqual(2);
+    });
+
+    xit('should remove items from the bag', function (){
+
     });
 
     xit('should look up products by search input', function () {

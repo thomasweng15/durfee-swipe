@@ -2,24 +2,28 @@
 	<h2>Perfect Durfee Swipe</h2>
 	<p>Top off your lunch swipe every time.</p>
 
+	
 	<div id="shopping-bag-list" ng-show="srvc.model.shoppingBag.items.length">
 		<p>Your Bag:</p>
 		<ul ng-repeat="item in srvc.model.shoppingBag.items">
-			<li>{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}}</li>
+			<li>
+				{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}} 
+				<a href="javascript:void(0)" ng-click="removeItemFromBag(item);">remove</a>
+			</li>
 		</ul>
-		<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
-		<p>Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}</p>
 	</div>
+	<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
+	<p>Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}</p>
 
-	<form id="lookup-form" ng-submit="lookUpItem()" novalidate>
-		<input ng-model="srvc.model.searchInput" type="text">
+	<form id="lookup-form" ng-submit="lookUpItem();" novalidate>
+		<input ng-model="srvc.model.searchInput" type="text" placeholder=" search for products">
 		<input type="submit" value="Submit">
 	</form>
 
 	<div id='suggestions'>
 		<br>
-		<button ng-click="toggleSuggestions()" type="button">{{srvc.model.suggestionsLabel}}</button>
-		<ul ng-show="displaySuggestions()" ng-repeat="item in productsUnderLimit()">
+		<button ng-click="toggleSuggestions();" type="button">{{srvc.model.suggestionsLabel}}</button>
+		<ul ng-show="displaySuggestions();" ng-repeat="item in productsUnderLimit()">
 			<li>{{item.name}}: {{item.price | currency}}</li>
 		</ul>
 	</div>

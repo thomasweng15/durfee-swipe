@@ -65,6 +65,18 @@ angular.module('durfeeswipeApp')
       model.shoppingBag.remainingCredit -= item.price;
     };
 
+    $scope.removeItemFromBag = function (item) {
+      var i = $scope.findItem(item.name, model.shoppingBag.items);
+      if (i !== -1) {
+        model.shoppingBag.items[i].count -= 1;
+        if (model.shoppingBag.items[i].count === 0) {
+          model.shoppingBag.items.splice(i, 1);
+        }
+      }
+      model.shoppingBag.totalPrice -= item.price;
+      model.shoppingBag.remainingCredit += item.price;
+    };
+
     $scope.lookUpItem = function () {
       // TODO validation / autocomplete
       var i = $scope.findItem(model.searchInput, $scope.products);
