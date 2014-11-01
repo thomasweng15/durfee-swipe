@@ -32,6 +32,9 @@
 				<a href="#" ng-click="addItemToBag(item)">add</a>
 			</li>
 		</ul>
+		<p ng-show="productsUnderLimit().length === 0">
+			No products found; remaining credit too low.
+		</p>
 	</div>
 	<br>
 </div>
