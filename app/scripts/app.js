@@ -28,8 +28,7 @@ var app = angular.module('durfeeswipeApp', [
         controller: 'InventoryCtrl'
       })
       .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/about.html'
       })
       .otherwise({
         redirectTo: '/'
@@ -55,7 +54,19 @@ app.factory('productsFactory', function () {
       price: 2.50
     },
     {
-      name: 'soda',
+      name: 'Coke',
+      price: 2.00
+    },
+    {
+      name: 'Diet Coke',
+      price: 2.00
+    },
+    {
+      name: 'Pepsi',
+      price: 2.00
+    },
+    {
+      name: 'Diet Pepsi',
       price: 2.00
     }
   ];
