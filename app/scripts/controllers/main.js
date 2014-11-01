@@ -8,16 +8,25 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', ['$scope', 'productsFactory', 'mainService', function ($scope, productsFactory, mainService) {
+  .controller('MainCtrl', ['$scope', '$timeout', 'productsFactory', 'mainService', 
+    function ($scope, $timeout, productsFactory, mainService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
+    $scope.alerts = [];
     $scope.products = productsFactory;
     $scope.srvc = mainService;
     var model = $scope.srvc.model;
+
+    $scope.addAlert = function(alertType, message) {
+      $scope.alerts.push({type: alertType, msg: message});
+      $timeout(function closeAlert() {
+        $scope.alerts.splice($scope.alerts.length - 1, 1);
+      }, 5000);
+    };
 
     $scope.onItemSelected = function () {
       model.searchInput = model.searchInput.name;
@@ -71,7 +80,6 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.removeItemFromBag = function (item) {
-      // TODO change remove link on main.html
       var i = $scope.findItem(item.name, model.shoppingBag.items);
       if (i !== -1) {
         model.shoppingBag.items[i].count -= 1;
@@ -84,7 +92,6 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.lookUpItem = function () {
-      // TODO submit validation
       var i = $scope.findItem(model.searchInput, $scope.products);
       if (i !== -1) {
         if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {
@@ -92,6 +99,8 @@ angular.module('durfeeswipeApp')
           model.suggestionToggled = true;
         }
         $scope.addItemToBag($scope.products[i]);
+      } else {
+        $scope.addAlert('danger', 'Product not found.');
       }
       model.searchInput = '';
     };
