@@ -2,7 +2,6 @@
 	<h2>Perfect Durfee Swipe</h2>
 	<p>Top off your lunch swipe every time.</p>
 
-	
 	<div id="shopping-bag-list" ng-show="srvc.model.shoppingBag.items.length">
 		<p>Your Bag:</p>
 		<ul ng-repeat="item in srvc.model.shoppingBag.items">
@@ -16,7 +15,10 @@
 	<p>Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}</p>
 
 	<form id="lookup-form" ng-submit="lookUpItem();" novalidate>
-		<input ng-model="srvc.model.searchInput" type="text" placeholder=" search for products">
+		<input ng-model="srvc.model.searchInput" type="text" 
+			placeholder=" search for products"
+			typeahead="item.name for item in products | filter:$viewValue | limitTo:8"
+			typeahead-on-select="onItemSelected();">
 		<input type="submit" value="Submit">
 	</form>
 

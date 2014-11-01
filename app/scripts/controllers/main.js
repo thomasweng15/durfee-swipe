@@ -19,6 +19,10 @@ angular.module('durfeeswipeApp')
     $scope.srvc = mainService;
     var model = $scope.srvc.model;
 
+    $scope.onItemSelected = function() { // this gets executed when an item is selected
+      $scope.lookUpItem();
+    };
+
     $scope.toggleSuggestions = function () {
       if (model.suggestionsLabel === 'Show Suggestions') {
         if (model.suggestionToggled === false) {
@@ -66,6 +70,7 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.removeItemFromBag = function (item) {
+      // TODO change remove link on main.html
       var i = $scope.findItem(item.name, model.shoppingBag.items);
       if (i !== -1) {
         model.shoppingBag.items[i].count -= 1;

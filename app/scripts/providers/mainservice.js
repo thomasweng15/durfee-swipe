@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('mainService', ['$rootScope', function ($rootScope) {
 
     var service = {
@@ -20,10 +22,10 @@ app.factory('mainService', ['$rootScope', function ($rootScope) {
         RestoreState: function () {
             service.model = angular.fromJson(sessionStorage.mainService);
         }
-    }
+    };
 
-    $rootScope.$on("savestate", service.SaveState);
-    $rootScope.$on("restorestate", service.RestoreState);
+    $rootScope.$on('savestate', service.SaveState);
+    $rootScope.$on('restorestate', service.RestoreState);
 
     return service;
 }]);

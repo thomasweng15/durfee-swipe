@@ -14,7 +14,8 @@ var app = angular.module('durfeeswipeApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -36,19 +37,27 @@ var app = angular.module('durfeeswipeApp', [
   });
 
 window.onbeforeunload = function (event) {
-    $rootScope.$broadcast('savestate');
+  $rootScope.$broadcast('savestate');
 };
 
 app.factory('productsFactory', function () {
-    var products = [
-      {
-        name: 'chips',
-        price: 3.00
-      },
-      {
-        name: 'soda',
-        price: 2.00
-      }
-    ];
-    return products;
-  });
+  var products = [
+    {
+      name: 'Sweet Maui Onion chips',
+      price: 3.00
+    },
+    {
+      name: 'Jalapeno Chips',
+      price: 3.00
+    },
+    {
+      name: 'Pirate\'s Booty',
+      price: 2.50
+    },
+    {
+      name: 'soda',
+      price: 2.00
+    }
+  ];
+  return products;
+});
