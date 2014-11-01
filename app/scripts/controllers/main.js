@@ -19,7 +19,8 @@ angular.module('durfeeswipeApp')
     $scope.srvc = mainService;
     var model = $scope.srvc.model;
 
-    $scope.onItemSelected = function() { // this gets executed when an item is selected
+    $scope.onItemSelected = function () {
+      model.searchInput = model.searchInput.name;
       $scope.lookUpItem();
     };
 
@@ -83,7 +84,8 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.lookUpItem = function () {
-      // TODO validation / autocomplete
+      // TODO submit validation
+      console.log(model.searchInput);
       var i = $scope.findItem(model.searchInput, $scope.products);
       if (i !== -1) {
         if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {
