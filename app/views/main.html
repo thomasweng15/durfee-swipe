@@ -7,7 +7,7 @@
 		<ul ng-repeat="item in srvc.model.shoppingBag.items">
 			<li>
 				{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}} 
-				<a href="javascript:void(0)" ng-click="removeItemFromBag(item);">remove</a>
+				<a href="#" ng-click="removeItemFromBag(item);">remove</a>
 			</li>
 		</ul>
 	</div>
@@ -27,7 +27,10 @@
 		<br>
 		<button ng-click="toggleSuggestions();" type="button">{{srvc.model.suggestionsLabel}}</button>
 		<ul ng-show="displaySuggestions();" ng-repeat="item in productsUnderLimit()">
-			<li>{{item.name}}: {{item.price | currency}}</li>
+			<li>
+				{{item.name}}: {{item.price | currency}}
+				<a href="#" ng-click="addItemToBag(item)">add</a>
+			</li>
 		</ul>
 	</div>
 	<br>

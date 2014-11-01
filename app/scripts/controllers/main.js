@@ -85,7 +85,6 @@ angular.module('durfeeswipeApp')
 
     $scope.lookUpItem = function () {
       // TODO submit validation
-      console.log(model.searchInput);
       var i = $scope.findItem(model.searchInput, $scope.products);
       if (i !== -1) {
         if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {
