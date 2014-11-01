@@ -1,6 +1,7 @@
 {
   "name": "durfeeswipe",
   "version": "0.0.1",
+  "license": "MIT",
   "dependencies": {
     "angular": "~1.2.0",
     "json3": "~3.3.1",
