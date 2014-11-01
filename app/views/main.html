@@ -1,4 +1,6 @@
 <div ng-controller="MainCtrl">
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.msg}}</alert>
+
 	<h2>Perfect Your Durfee Swipe</h2>
 	<p>Top off your lunch swipe every time.</p>
 
