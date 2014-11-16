@@ -8,8 +8,8 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', ['$scope', '$timeout', 'productsFactory', 'mainService', 
-    function ($scope, $timeout, productsFactory, mainService) {
+  .controller('MainCtrl', ['$scope', '$timeout', '$modal', 'productsFactory', 'mainService', 
+    function ($scope, $timeout, $modal, productsFactory, mainService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -46,6 +46,21 @@ angular.module('durfeeswipeApp')
 
     $scope.displaySuggestions = function () {
       return model.suggestionsLabel === 'Hide Suggestions';
+    };
+
+    $scope.openCreditLimitModal = function () {
+      var creditLimitModal = $modal.open({
+        templateUrl: 'creditLimitModal.html', 
+        controller: 'CreditLimitModalCtrl'
+        // TODO create and resolve creditLimit 
+      });
+
+      creditLimitModal.result.then(function (newCreditLimit) {
+        model.shoppingBag.remainingCredit = newCreditLimit;
+      }, function () {
+        // TODO turn into ui alert
+        console.log("dismissed");
+      });
     };
 
     $scope.productsUnderLimit = function () {

@@ -14,7 +14,10 @@
 		</ul>
 	</div>
 	<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
-	<p>Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}</p>
+	<p>
+		Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}
+		<button ng-click="openCreditLimitModal();" type="button">Adjust Credit Limit</button>
+	</p>
 
 	<form id="lookup-form" ng-submit="lookUpItem();" novalidate>
 		<input ng-model="srvc.model.searchInput" type="text" 
@@ -40,6 +43,21 @@
 	</div>
 	<br>
 </div>
+
+<script type="text/ng-template" id="creditLimitModal.html">
+	<div class="modal-header">
+	    <h3>Adjust the credit limit</h3>
+	</div>
+	<form id="credit-limit-form" ng-submit="updateCreditLimit();" novalidate>
+		<div class="modal-body">
+			<input ng-model="$scope.newCreditLimit" type="text">
+		</div>
+		<div class="modal-footer">
+			<button ng-click="cancel();">Cancel</button>
+			<input type="submit" value="Update Limit">
+		</div>
+	</form>
+</script>
 
 <script type="text/ng-template" id="typeahead.html">
   <a>
