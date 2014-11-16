@@ -5,10 +5,13 @@ app.factory('mainService', ['$rootScope', function ($rootScope) {
     var service = {
 
         model: {
+            creditLimit: 8.00,
             searchInput: '',
             shoppingBag: {
                 totalPrice: 0.00,
-                remainingCredit: 8.00,
+                remainingCredit: function (creditLimit, totalPrice) {
+                    return creditLimit - totalPrice;
+                },
                 items: []
             },
             suggestionsLabel: 'Show Suggestions',

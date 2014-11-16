@@ -15,7 +15,7 @@
 	</div>
 	<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
 	<p>
-		Remaining credit: {{srvc.model.shoppingBag.remainingCredit | currency}}
+		Remaining credit: {{srvc.model.shoppingBag.remainingCredit(srvc.model.creditLimit, srvc.model.shoppingBag.totalPrice) | currency}}
 		<button ng-click="openCreditLimitModal();" type="button">Adjust Credit Limit</button>
 	</p>
 
@@ -28,27 +28,27 @@
 		<input type="submit" value="Submit">
 	</form>
 
-	<div id='suggestions'>
+	<div id="suggestions">
 		<br>
 		<button ng-click="toggleSuggestions();" type="button">{{srvc.model.suggestionsLabel}}</button>
-		<ul ng-show="displaySuggestions();" ng-repeat="item in productsUnderLimit()">
+		<ul ng-repeat="item in productsUnderLimit()">
 			<li>
 				{{item.name}}: {{item.price | currency}}
 				<a href="#" ng-click="addItemToBag(item)">add</a>
 			</li>
+			<li ng-show="!productsUnderLimit().length">
+				No products found; remaining credit too low.
+			</li>
 		</ul>
-		<p ng-show="productsUnderLimit().length === 0">
-			No products found; remaining credit too low.
-		</p>
 	</div>
 	<br>
 </div>
 
 <script type="text/ng-template" id="creditLimitModal.html">
-	<div class="modal-header">
-	    <h3>Adjust the credit limit</h3>
-	</div>
 	<form name="creditLimitForm" ng-submit="updateCreditLimit($scope.newCreditLimit);">
+		<div class="modal-header">
+			<h3>Adjust the credit limit</h3>
+		</div>
 		<div class="modal-body">
 			<input type="number" name="input" ng-model="$scope.newCreditLimit" min="0" required>
 		</div>

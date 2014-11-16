@@ -44,20 +44,19 @@ angular.module('durfeeswipeApp')
       }
     };
 
-    $scope.displaySuggestions = function () {
-      return model.suggestionsLabel === 'Hide Suggestions';
-    };
-
     $scope.openCreditLimitModal = function () {
       var creditLimitModal = $modal.open({
         templateUrl: 'creditLimitModal.html', 
-        controller: 'CreditLimitModalCtrl'
-        // TODO resolve creditLimit 
+        controller: 'CreditLimitModalCtrl',
+        resolve: {
+          existingCreditLimit: function () {
+            return model.creditLimit;
+          }
+        }
       });
 
       creditLimitModal.result.then(function (newCreditLimit) {
-        // TODO create credit limit
-        model.shoppingBag.remainingCredit = newCreditLimit;
+        model.creditLimit = newCreditLimit;
       }, function () {
         // TODO turn into ui alert
         console.log("dismissed");
@@ -67,7 +66,8 @@ angular.module('durfeeswipeApp')
     $scope.productsUnderLimit = function () {
       var products = [];
       for (var i = 0; i < $scope.products.length; i++) {
-        if ($scope.products[i].price <= model.shoppingBag.remainingCredit) {
+        if ($scope.products[i].price <= model.shoppingBag.remainingCredit(
+          model.creditLimit, model.shoppingBag.totalPrice)) {
           products.push($scope.products[i]);
         }
       }
@@ -92,7 +92,6 @@ angular.module('durfeeswipeApp')
         model.shoppingBag.items.push(item);
       }
       model.shoppingBag.totalPrice += item.price;
-      model.shoppingBag.remainingCredit -= item.price;
     };
 
     $scope.removeItemFromBag = function (item) {
@@ -104,7 +103,6 @@ angular.module('durfeeswipeApp')
         }
       }
       model.shoppingBag.totalPrice -= item.price;
-      model.shoppingBag.remainingCredit += item.price;
     };
 
     $scope.lookUpItem = function () {

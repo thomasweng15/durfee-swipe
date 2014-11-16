@@ -8,15 +8,16 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('CreditLimitModalCtrl', ['$scope', '$modalInstance', 
-  	function ($scope, $modalInstance) {
+  .controller('CreditLimitModalCtrl', ['$scope', '$modalInstance', 'existingCreditLimit',
+  	function ($scope, $modalInstance, existingCreditLimit) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.newCreditLimit = 8.00;
+    // TODO indicate existing value vs. new value on ui
+    $scope.newCreditLimit = existingCreditLimit;
 
     $scope.updateCreditLimit = function (newCreditLimit) {
     	$modalInstance.close(newCreditLimit);
