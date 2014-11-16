@@ -52,10 +52,11 @@ angular.module('durfeeswipeApp')
       var creditLimitModal = $modal.open({
         templateUrl: 'creditLimitModal.html', 
         controller: 'CreditLimitModalCtrl'
-        // TODO create and resolve creditLimit 
+        // TODO resolve creditLimit 
       });
 
       creditLimitModal.result.then(function (newCreditLimit) {
+        // TODO create credit limit
         model.shoppingBag.remainingCredit = newCreditLimit;
       }, function () {
         // TODO turn into ui alert

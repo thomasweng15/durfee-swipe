@@ -16,10 +16,10 @@ angular.module('durfeeswipeApp')
       'Karma'
     ];
 
-    $scope.newCreditLimit = 7.00;
+    $scope.newCreditLimit = 8.00;
 
-    $scope.updateCreditLimit = function () {
-    	$modalInstance.close($scope.newCreditLimit);
+    $scope.updateCreditLimit = function (newCreditLimit) {
+    	$modalInstance.close(newCreditLimit);
     };
 
     $scope.cancel = function () {

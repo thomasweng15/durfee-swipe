@@ -48,13 +48,13 @@
 	<div class="modal-header">
 	    <h3>Adjust the credit limit</h3>
 	</div>
-	<form id="credit-limit-form" ng-submit="updateCreditLimit();" novalidate>
+	<form name="creditLimitForm" ng-submit="updateCreditLimit($scope.newCreditLimit);">
 		<div class="modal-body">
-			<input ng-model="$scope.newCreditLimit" type="text">
+			<input type="number" name="input" ng-model="$scope.newCreditLimit" min="0" required>
 		</div>
 		<div class="modal-footer">
+			<button type="submit">Update Limit</button>
 			<button ng-click="cancel();">Cancel</button>
-			<input type="submit" value="Update Limit">
 		</div>
 	</form>
 </script>
