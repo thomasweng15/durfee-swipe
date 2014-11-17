@@ -33,7 +33,9 @@ describe('Controller: MainCtrl', function () {
     it('should attach a shopping bag to the scope', function () {
       expect(scope.srvc.model.shoppingBag).not.toEqual(null);
       expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(0);
-      expect(scope.srvc.model.shoppingBag.remainingCredit).toEqual(8.00);
+      expect(scope.srvc.model.shoppingBag.remainingCredit(
+        scope.srvc.model.creditLimit, scope.srvc.model.shoppingBag.totalPrice
+      )).toEqual(8.00);
       expect(scope.srvc.model.shoppingBag.items).toEqual([]);
     });
   });
