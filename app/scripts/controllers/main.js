@@ -44,6 +44,10 @@ angular.module('durfeeswipeApp')
       }
     };
 
+    $scope.displaySuggestions = function () {
+      return model.suggestionsLabel === 'Hide Suggestions';
+    };
+
     $scope.openCreditLimitModal = function () {
       var creditLimitModal = $modal.open({
         templateUrl: 'creditLimitModal.html', 

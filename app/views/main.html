@@ -31,7 +31,7 @@
 	<div id="suggestions">
 		<br>
 		<button ng-click="toggleSuggestions();" type="button">{{srvc.model.suggestionsLabel}}</button>
-		<ul ng-repeat="item in productsUnderLimit()">
+		<ul ng-show="displaySuggestions();" ng-repeat="item in productsUnderLimit()">
 			<li>
 				{{item.name}}: {{item.price | currency}}
 				<a href="#" ng-click="addItemToBag(item)">add</a>
@@ -50,6 +50,7 @@
 			<h3>Adjust the credit limit</h3>
 		</div>
 		<div class="modal-body">
+			<p>Enter a new credit limit:</p>
 			<input type="number" name="input" ng-model="$scope.newCreditLimit" min="0" required>
 		</div>
 		<div class="modal-footer">
