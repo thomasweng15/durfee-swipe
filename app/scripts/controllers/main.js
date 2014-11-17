@@ -24,7 +24,7 @@ angular.module('durfeeswipeApp')
     $scope.addAlert = function(alertType, message) {
       $scope.alerts.push({type: alertType, msg: message});
       $timeout(function closeAlert() {
-        $scope.alerts.splice($scope.alerts.length - 1, 1);
+        $scope.alerts.shift();
       }, 5000);
     };
 
@@ -56,10 +56,10 @@ angular.module('durfeeswipeApp')
       });
 
       creditLimitModal.result.then(function (newCreditLimit) {
+        $scope.addAlert("", "Updated credit limit!");
         model.creditLimit = newCreditLimit;
       }, function () {
-        // TODO turn into ui alert
-        console.log("dismissed");
+        $scope.addAlert("", "Credit limit not adjusted.");
       });
     };
 
