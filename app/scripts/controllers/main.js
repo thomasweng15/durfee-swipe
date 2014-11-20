@@ -70,8 +70,7 @@ angular.module('durfeeswipeApp')
     $scope.productsUnderLimit = function () {
       var products = [];
       for (var i = 0; i < $scope.products.length; i++) {
-        if ($scope.products[i].price <= model.shoppingBag.remainingCredit(
-          model.creditLimit, model.shoppingBag.totalPrice)) {
+        if ($scope.products[i].price <= model.shoppingBag.remainingCredit(model)) {
           products.push($scope.products[i]);
         }
       }

@@ -15,7 +15,7 @@
 	</div>
 	<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
 	<p>
-		Remaining credit: {{srvc.model.shoppingBag.remainingCredit(srvc.model.creditLimit, srvc.model.shoppingBag.totalPrice) | currency}}
+		Remaining credit: {{srvc.model.shoppingBag.remainingCredit(srvc.model) | currency}}
 		<button ng-click="openCreditLimitModal();" type="button">Adjust Credit Limit</button>
 	</p>
 

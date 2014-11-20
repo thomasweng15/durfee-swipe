@@ -9,8 +9,8 @@ app.factory('mainService', ['$rootScope', function ($rootScope) {
             searchInput: '',
             shoppingBag: {
                 totalPrice: 0.00,
-                remainingCredit: function (creditLimit, totalPrice) {
-                    return creditLimit - totalPrice;
+                remainingCredit: function (model) {
+                    return model.creditLimit - model.shoppingBag.totalPrice;
                 },
                 items: []
             },

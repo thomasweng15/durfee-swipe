@@ -21,7 +21,7 @@ describe('Controller: MainCtrl', function () {
       expect(scope.awesomeThings.length).toBe(3);
     });
 
-    it('should attach a service to the scope', function () {
+    it('should attach a data persistence service to the scope', function () {
       expect(scope.srvc).not.toEqual(null);
       expect(scope.srvc.model).not.toEqual(null);
     });
@@ -33,9 +33,7 @@ describe('Controller: MainCtrl', function () {
     it('should attach a shopping bag to the scope', function () {
       expect(scope.srvc.model.shoppingBag).not.toEqual(null);
       expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(0);
-      expect(scope.srvc.model.shoppingBag.remainingCredit(
-        scope.srvc.model.creditLimit, scope.srvc.model.shoppingBag.totalPrice
-      )).toEqual(8.00);
+      expect(scope.srvc.model.shoppingBag.remainingCredit(scope.srvc.model)).toEqual(8.00);
       expect(scope.srvc.model.shoppingBag.items).toEqual([]);
     });
   });
@@ -94,6 +92,22 @@ describe('Controller: MainCtrl', function () {
 
     xit('should toggle upon first search input submit', function () {
 
+    });
+  });
+
+  xdescribe('Alerts', function () {
+    xit('should appear on the page by calling addAlert()', function () {
+
+    });
+
+    xit('should time out after a few seconds', function () {
+
+    });
+  });
+
+  xdescribe('Credit Limit', function () {
+    xit('should be adjustable', function () {
+      
     });
   });
 });
