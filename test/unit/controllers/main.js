@@ -39,10 +39,7 @@ describe('Controller: MainCtrl', function () {
   });
 
   describe('Shopping Bag functions', function () {
-    var newItem = {
-      name: 'd',
-      price: 4.00
-    };
+    var newItem = { name: 'd', price: 4.00 };
     
     it('should find items in lists', function () {
       var bag = [
@@ -85,16 +82,34 @@ describe('Controller: MainCtrl', function () {
     });
   });
 
-  xdescribe('Suggestions', function () {
-    xit('should have a show/hide Suggestions button', function () {
+  describe('Suggestions', function () {
+    it('should be toggle-able', function () {
+      expect(scope.srvc.model.suggestionsLabel).toEqual('Show Suggestions');
+      scope.toggleSuggestions();
+      expect(scope.srvc.model.suggestionsLabel).toEqual('Hide Suggestions');
+      expect(scope.displaySuggestions()).toBe(true);
+    });
+
+    it('should suggest items priced under remaining credit', function () {
+      var aboveCreditItem = { name: 'aboveCredit', price: 10.00 };
+      var underCreditItem1 = { name: 'underCredit1', price: 4.00 };
+      var underCreditItem2 = { name: 'underCredit2', price: 2.00 };
+      scope.products.push(aboveCreditItem);
+      scope.products.push(underCreditItem1);
+      scope.products.push(underCreditItem2);
+      var productsSuggested = scope.productsUnderLimit();
+      expect(scope.findItem('aboveCredit', productsSuggested)).toEqual(-1);
+      expect(scope.findItem('underCredit1', productsSuggested)).not.toEqual(-1);
+      expect(scope.findItem('underCredit2', productsSuggested)).not.toEqual(-1);
+    });
+  });
+
+  xdescribe('Item Lookup', function () {
+    xit('should toggle suggestions on first run', function () {
 
     });
 
-    xit('should display items with prices below remaining credit', function () {
-
-    });
-
-    xit('should toggle upon first search input submit', function () {
+    xit('should clear the search input box', function () {
 
     });
   });
