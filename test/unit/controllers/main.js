@@ -39,30 +39,23 @@ describe('Controller: MainCtrl', function () {
   });
 
   describe('Shopping Bag functions', function () {
-    var bag = [
-      {
-        name: 'a',
-        price: 3.00
-      },
-      {
-        name: 'b',
-        price: 2.39
-      }
-    ];
-    var itemName = 'b';
-    var invalidItemName = 'c';
+    var newItem = {
+      name: 'd',
+      price: 4.00
+    };
     
     it('should find items in lists', function () {
+      var bag = [
+        { name: 'a', price: 3.00 },
+        { name: 'b', price: 2.39 }
+      ];
+      var itemName = 'b';
+      var invalidItemName = 'c';
       expect(scope.findItem(itemName, bag)).toEqual(1);
       expect(scope.findItem(invalidItemName, bag)).toEqual(-1);
     });
 
     it('should add items to the bag', function () {
-      var newItem = {
-        name: 'd',
-        price: 4.00
-      };
-      
       scope.addItemToBag(newItem);
       var newItemIndex = scope.findItem(newItem.name, scope.srvc.model.shoppingBag.items);
       expect(newItemIndex).not.toEqual(-1);
@@ -72,12 +65,23 @@ describe('Controller: MainCtrl', function () {
       expect(scope.srvc.model.shoppingBag.items[newItemIndex].count).toEqual(2);
     });
 
-    xit('should remove items from the bag', function (){
+    it('should remove items from the bag', function () {
+      scope.addItemToBag(newItem);
+      var newItemIndex = scope.findItem(newItem.name, scope.srvc.model.shoppingBag.items);
+      expect(newItemIndex).not.toEqual(-1);
+      expect(scope.srvc.model.shoppingBag.items[newItemIndex].count).toEqual(1);
 
+      scope.removeItemFromBag(newItem);
+      var newItemIndex = scope.findItem(newItem.name, scope.srvc.model.shoppingBag.items);
+      expect(newItemIndex).toEqual(-1);
     });
 
-    xit('should look up products by search input', function () {
-
+    it('should update total price of bag when items are added / removed', function () {
+      expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(0);
+      scope.addItemToBag(newItem);
+      expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(4.00);
+      scope.removeItemFromBag(newItem);
+      expect(scope.srvc.model.shoppingBag.totalPrice).toEqual(0);
     });
   });
 
@@ -107,7 +111,7 @@ describe('Controller: MainCtrl', function () {
 
   xdescribe('Credit Limit', function () {
     xit('should be adjustable', function () {
-      
+
     });
   });
 });

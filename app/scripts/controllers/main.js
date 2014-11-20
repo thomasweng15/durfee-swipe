@@ -104,8 +104,8 @@ angular.module('durfeeswipeApp')
         if (model.shoppingBag.items[i].count === 0) {
           model.shoppingBag.items.splice(i, 1);
         }
+        model.shoppingBag.totalPrice -= item.price;
       }
-      model.shoppingBag.totalPrice -= item.price;
     };
 
     $scope.lookUpItem = function () {
