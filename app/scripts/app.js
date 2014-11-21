@@ -23,9 +23,9 @@ var app = angular.module('durfeeswipeApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/inventory', {
-        templateUrl: 'views/inventory.html',
-        controller: 'InventoryCtrl'
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductsCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html'

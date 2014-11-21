@@ -148,8 +148,8 @@ describe('Controller: MainCtrl', function () {
   });
 
   xdescribe('Alerts', function () {
-    xit('should appear on the page by calling addAlert()', function () {
-
+    xit('should be able to be added', function () {
+      
     });
 
     xit('should time out after a few seconds', function () {
@@ -161,5 +161,9 @@ describe('Controller: MainCtrl', function () {
     xit('should be adjustable', function () {
 
     });
+  });
+
+  xdescribe('Page data persistence', function () {
+
   });
 });

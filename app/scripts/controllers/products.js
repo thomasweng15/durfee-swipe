@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name durfeeswipeApp.controller:InventoryCtrl
+ * @name durfeeswipeApp.controller:ProductsCtrl
  * @description
- * # InventoryCtrl
+ * # ProductsCtrl
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('InventoryCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
+  .controller('ProductsCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
