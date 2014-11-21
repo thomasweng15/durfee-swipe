@@ -104,13 +104,46 @@ describe('Controller: MainCtrl', function () {
     });
   });
 
-  xdescribe('Item Lookup', function () {
-    xit('should toggle suggestions on first run', function () {
-
+  describe('Item Lookup', function () {
+    
+    beforeEach(function () {
+      var itemInProducts = { name: 'itemInProducts', price: 10.00 };
+      var itemNotInProducts = { name: 'itemNotInProducts', price: 10.00 };
+      scope.products.push(itemInProducts);
     });
 
-    xit('should clear the search input box', function () {
+    it('should add item to bag if found in products', function () {
+      scope.srvc.model.searchInput = 'itemInProducts';
+      scope.lookUpItem();
+      expect(scope.findItem('itemInProducts', scope.srvc.model.shoppingBag.items)).not.toEqual(-1);
+      expect(scope.findItem('itemNotInProducts', scope.srvc.model.shoppingBag.items)).toEqual(-1);
+    });
 
+    it('should add an alert if item not found in products', function () {
+      scope.srvc.model.searchInput = 'itemNotInProducts';
+      scope.lookUpItem();
+      expect(scope.alerts.length).toEqual(1);
+    });
+
+    it('should show suggestions if item added to bag for the first time', function () {
+      expect(scope.srvc.model.suggestionsLabel).toEqual('Show Suggestions');
+      scope.srvc.model.searchInput = 'itemInProducts';
+      scope.lookUpItem();
+      expect(scope.srvc.model.suggestionsLabel).toEqual('Hide Suggestions');
+    });
+
+    it('should not show suggestions if suggestions toggled before item added for the first time', function () {
+      scope.toggleSuggestions();
+      scope.toggleSuggestions();
+      scope.srvc.model.searchInput = 'itemInProducts';
+      scope.lookUpItem();
+      expect(scope.srvc.model.suggestionsLabel).toEqual('Show Suggestions');
+    });
+
+    it('should clear the search input box', function () {
+      scope.srvc.model.searchInput = 'dummy text';
+      scope.lookUpItem();
+      expect(scope.srvc.model.searchInput).toEqual('');
     });
   });
 
