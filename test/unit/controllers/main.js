@@ -162,4 +162,8 @@ describe('Controller: MainCtrl', function () {
 
     });
   });
+
+  xdescribe('Page data persistence', function () {
+
+  });
 });
