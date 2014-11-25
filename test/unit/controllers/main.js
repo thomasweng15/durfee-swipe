@@ -105,7 +105,6 @@ describe('Controller: MainCtrl', function () {
   });
 
   describe('Item Lookup', function () {
-    
     beforeEach(function () {
       var itemInProducts = { name: 'itemInProducts', price: 10.00 };
       var itemNotInProducts = { name: 'itemNotInProducts', price: 10.00 };
@@ -147,23 +146,14 @@ describe('Controller: MainCtrl', function () {
     });
   });
 
-  xdescribe('Alerts', function () {
-    xit('should be able to be added', function () {
-      
+  describe('Alerts', function () {
+    it('should be create-able', function () {
+      scope.addAlert('danger', 'dummy danger message');
+      expect(scope.alerts.length).toEqual(1);
+      scope.addAlert('success', 'dummy success message');
+      expect(scope.alerts.length).toEqual(2);
+      scope.addAlert('', 'dummy notify message');
+      expect(scope.alerts.length).toEqual(3);
     });
-
-    xit('should time out after a few seconds', function () {
-
-    });
-  });
-
-  xdescribe('Credit Limit', function () {
-    xit('should be adjustable', function () {
-
-    });
-  });
-
-  xdescribe('Page data persistence', function () {
-
   });
 });
