@@ -72,26 +72,3 @@ app.factory('productsFactory', function () {
   ];
   return products;
 });
-
-app.factory('myService', function($http) {
-  var myService = {
-    
-    data: '',
-
-    async: function() {
-      var sheetUrl = 'https://spreadsheets.google.com/feeds/list/0AiyPGkqVtM-pdHkwZlV3NFVDRGdsVmRUeGRyN0pPbFE/od6/public/basic';
-      var promise = $http.get(sheetUrl).
-        success(function(data, status, headers, config) {
-          // TODO parse xml
-          myService.data = data;
-          console.log('success');
-        }).
-        error(function(data, status, headers, config) {
-          console.log('error');
-        });
-      // Return the promise to the controller
-      return myService;
-    }
-  };
-  return myService;
-});

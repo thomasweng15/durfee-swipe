@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('mainService', ['$rootScope', function ($rootScope) {
+app.factory('mainSrvc', ['$rootScope', function ($rootScope) {
 
     var service = {
 

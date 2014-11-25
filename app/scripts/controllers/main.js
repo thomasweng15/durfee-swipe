@@ -8,19 +8,19 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', ['$scope', 'myService', '$timeout', '$modal', 'productsFactory', 'mainService', 
-    function ($scope, myService, $timeout, $modal, productsFactory, mainService) {
+  .controller('MainCtrl', ['$scope', 'productsSrvc', '$timeout', '$modal', 'productsFactory', 'mainSrvc', 
+    function ($scope, productsSrvc, $timeout, $modal, productsFactory, mainSrvc) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.myService = myService.async();
+    $scope.productsSrvc = productsSrvc.async();
 
     $scope.alerts = [];
     $scope.products = productsFactory;
-    $scope.srvc = mainService;
+    $scope.srvc = mainSrvc;
     var model = $scope.srvc.model;
 
     $scope.addAlert = function(alertType, message) {
