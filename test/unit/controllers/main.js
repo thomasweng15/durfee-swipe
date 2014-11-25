@@ -94,9 +94,9 @@ describe('Controller: MainCtrl', function () {
       var aboveCreditItem = { name: 'aboveCredit', price: 10.00 };
       var underCreditItem1 = { name: 'underCredit1', price: 4.00 };
       var underCreditItem2 = { name: 'underCredit2', price: 2.00 };
-      scope.products.push(aboveCreditItem);
-      scope.products.push(underCreditItem1);
-      scope.products.push(underCreditItem2);
+      scope.productsSrvc.products.push(aboveCreditItem);
+      scope.productsSrvc.products.push(underCreditItem1);
+      scope.productsSrvc.products.push(underCreditItem2);
       var productsSuggested = scope.productsUnderLimit();
       expect(scope.findItem('aboveCredit', productsSuggested)).toEqual(-1);
       expect(scope.findItem('underCredit1', productsSuggested)).not.toEqual(-1);
@@ -108,7 +108,7 @@ describe('Controller: MainCtrl', function () {
     beforeEach(function () {
       var itemInProducts = { name: 'itemInProducts', price: 10.00 };
       var itemNotInProducts = { name: 'itemNotInProducts', price: 10.00 };
-      scope.products.push(itemInProducts);
+      scope.productsSrvc.products.push(itemInProducts);
     });
 
     it('should add item to bag if found in products', function () {

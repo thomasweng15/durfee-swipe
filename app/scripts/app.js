@@ -38,37 +38,3 @@ var app = angular.module('durfeeswipeApp', [
 window.onbeforeunload = function (event) {
   $rootScope.$broadcast('savestate');
 };
-
-app.factory('productsFactory', function () {
-  var products = [
-    {
-      name: 'Sweet Maui Onion chips',
-      price: 3.00
-    },
-    {
-      name: 'Jalapeno Chips',
-      price: 3.00
-    },
-    {
-      name: 'Pirate\'s Booty',
-      price: 2.50
-    },
-    {
-      name: 'Coke',
-      price: 2.00
-    },
-    {
-      name: 'Diet Coke',
-      price: 2.00
-    },
-    {
-      name: 'Pepsi',
-      price: 2.00
-    },
-    {
-      name: 'Diet Pepsi',
-      price: 2.00
-    }
-  ];
-  return products;
-});

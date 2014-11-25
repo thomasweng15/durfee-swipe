@@ -8,12 +8,12 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('ProductsCtrl', ['$scope', 'productsFactory', function ($scope, productsFactory) {
+  .controller('ProductsCtrl', ['$scope', 'productsSrvc', function ($scope, productsSrvc) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.products = productsFactory;
+	$scope.productsSrvc = productsSrvc;
   }]);

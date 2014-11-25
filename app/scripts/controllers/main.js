@@ -8,18 +8,16 @@
  * Controller of the durfeeswipeApp
  */
 angular.module('durfeeswipeApp')
-  .controller('MainCtrl', ['$scope', 'productsSrvc', '$timeout', '$modal', 'productsFactory', 'mainSrvc', 
-    function ($scope, productsSrvc, $timeout, $modal, productsFactory, mainSrvc) {
+  .controller('MainCtrl', ['$scope', '$timeout', '$modal', 'productsSrvc', 'mainSrvc', 
+    function ($scope, $timeout, $modal, productsSrvc, mainSrvc) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.productsSrvc = productsSrvc.async();
-
+    $scope.productsSrvc = productsSrvc;
     $scope.alerts = [];
-    $scope.products = productsFactory;
     $scope.srvc = mainSrvc;
     var model = $scope.srvc.model;
 
@@ -71,9 +69,9 @@ angular.module('durfeeswipeApp')
 
     $scope.productsUnderLimit = function () {
       var products = [];
-      for (var i = 0; i < $scope.products.length; i++) {
-        if ($scope.products[i].price <= model.shoppingBag.remainingCredit(model)) {
-          products.push($scope.products[i]);
+      for (var i = 0; i < $scope.productsSrvc.products.length; i++) {
+        if ($scope.productsSrvc.products[i].price <= model.shoppingBag.remainingCredit(model)) {
+          products.push($scope.productsSrvc.products[i]);
         }
       }
       return products;
@@ -111,13 +109,13 @@ angular.module('durfeeswipeApp')
     };
 
     $scope.lookUpItem = function () {
-      var i = $scope.findItem(model.searchInput, $scope.products);
+      var i = $scope.findItem(model.searchInput, $scope.productsSrvc.products);
       if (i !== -1) {
         if (model.shoppingBag.items.length === 0 && model.suggestionToggled === false) {
           $scope.toggleSuggestions();
           model.suggestionToggled = true;
         }
-        $scope.addItemToBag($scope.products[i]);
+        $scope.addItemToBag($scope.productsSrvc.products[i]);
       } else {
         $scope.addAlert('danger', 'Product not found.');
       }

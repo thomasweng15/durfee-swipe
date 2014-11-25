@@ -20,7 +20,7 @@ describe('Controller: ProductsCtrl', function () {
     expect(scope.awesomeThings.length).toBe(3);
   });
 
-  it('should attach a list of products to the scope', function () {
-    expect(scope.products).not.toEqual(null);
+  it('should attach a products service to the scope', function () {
+    expect(scope.productsSrvc).not.toEqual(null);
   });
 });

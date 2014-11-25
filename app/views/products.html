@@ -1,6 +1,6 @@
 <div>
 	<h2>Inventory</h2>
-	<ul ng-repeat='product in products'>
+	<ul ng-repeat='product in productsSrvc.products'>
 		<li>{{product.name}}: {{product.price | currency}}</li>
 	</ul>
 </div>

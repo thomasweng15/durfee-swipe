@@ -2,19 +2,21 @@
 
 app.factory('productsSrvc', ['$http', function ($http) {
   var sheetUrl = 'https://spreadsheets.google.com/feeds/list/0AiyPGkqVtM-pdHkwZlV3NFVDRGdsVmRUeGRyN0pPbFE/od6/public/basic';
+  
   var service = {
-    products: [],
-    async: function () {
-      $http.get(sheetUrl).
+    products: []
+  };
+
+  function getSheetData () {
+    $http.get(sheetUrl).
         success(function(data, status, headers, config) {
           service.products = parseXMLData(data);
-          console.log('success');
         }).
         error(function(data, status, headers, config) {
           console.log('error fetching google spreadsheet data.');
         });
-    }
-  };
+  }
+  getSheetData();
 
   // This function is very fragile as it relies on the google
   // sheet being formatted a certain way. 
@@ -32,7 +34,8 @@ app.factory('productsSrvc', ['$http', function ($http) {
       var priceStr = priceEntry.split(': ')[1];
       var productPrice = parseFloat(priceStr);
 
-      productObj[productName] = productPrice;
+      productObj["name"] = productName;
+      productObj["price"] = productPrice;
       products.push(productObj);
     }
     return products;
