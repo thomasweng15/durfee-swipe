@@ -31,15 +31,17 @@
 	<div id="suggestions">
 		<br>
 		<button ng-click="toggleSuggestions();" type="button">{{srvc.model.suggestionsLabel}}</button>
-		<ul ng-show="displaySuggestions();" ng-repeat="item in productsUnderLimit()">
-			<li>
-				{{item.name}}: {{item.price | currency}}
-				<a href="#" ng-click="addItemToBag(item)">add</a>
-			</li>
-			<li ng-show="!productsUnderLimit().length">
+		<div ng-show="displaySuggestions();">
+			<ul ng-repeat="item in productsUnderLimit()">
+				<li>
+					{{item.name}}: {{item.price | currency}}
+					<a href="#" ng-click="addItemToBag(item)">add</a>
+				</li>
+			</ul>
+			<p ng-show="!productsUnderLimit().length">
 				No products found; remaining credit too low.
-			</li>
-		</ul>
+			</p>
+		</div>
 	</div>
 	<br>
 </div>
