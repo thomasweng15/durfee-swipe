@@ -9,11 +9,11 @@
 		<ul ng-repeat="item in srvc.model.shoppingBag.items">
 			<li>
 				{{item.name}} (x{{item.count}}): {{item.price * item.count | currency}} 
-				<a href="#" ng-click="removeItemFromBag(item);">remove</a>
+				<a class="bag-remove-item" href="#" ng-click="removeItemFromBag(item);">remove</a>
 			</li>
 		</ul>
+		<p id='bag-total-price'>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
 	</div>
-	<p>Total price: {{srvc.model.shoppingBag.totalPrice | currency}}</p>
 	<p>
 		Remaining credit: {{srvc.model.shoppingBag.remainingCredit(srvc.model) | currency}}
 		<button ng-click="openCreditLimitModal();" type="button">Adjust Credit Limit</button>
