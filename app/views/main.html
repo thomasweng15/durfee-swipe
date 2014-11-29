@@ -20,12 +20,12 @@
 	</p>
 
 	<form id="lookup-form" ng-submit="lookUpItem();" novalidate>
-		<input ng-model="srvc.model.searchInput" type="text" 
+		<input id="product-search-box" ng-model="srvc.model.searchInput" type="text" 
 			placeholder=" search for products"
 			typeahead="item as item.name for item in productsSrvc.products | filter:{'name':$viewValue} | limitTo:8"
 			typeahead-template-url="typeahead.html"
 			typeahead-on-select="onItemSelected();">
-		<input type="submit" value="Submit">
+		<input id="product-search-submit" type="submit" value="Submit">
 	</form>
 
 	<div id="suggestions">

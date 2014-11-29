@@ -1,9 +1,9 @@
 'use strict';
 
-describe('durfee homepage', function() {
-  it('should have the header Perfect Durfee Swipe', function() {
+describe('Product Search', function () {
+  it('should have a searchbox and submit button', function () {
     browser.get('/');
-    var header = element(by.tagName('h2'));
-    expect(header.getText()).toEqual('Perfect Durfee Swipe');
+    expect(element(by.id('product-search-box')).isPresent()).toBe(true);
+    expect(element(by.id('product-search-submit')).isPresent()).toBe(true);
   });
 });
